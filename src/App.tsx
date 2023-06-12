@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import CoinbaseWalletCard from '../components/connectorCards/CoinbaseWalletCard';
+// import GnosisSafeCard from '../components/connectorCards/GnosisSafeCard';
+import MetaMaskCard from './components/connectorCards/MetaMaskCard';
+import NetworkCard from './components/connectorCards/NetworkCard';
+// import WalletConnectCard from '../components/connectorCards/WalletConnectCard';
+// import WalletConnectV2Card from '../components/connectorCards/WalletConnectV2Card';
+import ProviderExample from './components/ProviderExample';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <ProviderExample />
+      <div
+        style={{ display: 'flex', flexFlow: 'wrap', fontFamily: 'sans-serif' }}
+      >
+        <MetaMaskCard />
+        {/* <WalletConnectV2Card /> */}
+        {/* <WalletConnectCard /> */}
+        {/* <CoinbaseWalletCard /> */}
+        <NetworkCard />
+        {/* <GnosisSafeCard /> */}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
