@@ -1,4 +1,4 @@
-// import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
+import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { Web3ReactHooks } from '@web3-react/core';
 // import { GnosisSafe } from '@web3-react/gnosis-safe';
 import type { MetaMask } from '@web3-react/metamask';
@@ -58,7 +58,7 @@ export function ConnectWithSelect({
     | MetaMask
     // | WalletConnect
     // | WalletConnectV2
-    // | CoinbaseWallet
+    | CoinbaseWallet
     | Network;
   // | GnosisSafe;
   activeChainId: ReturnType<Web3ReactHooks['useChainId']>;
@@ -117,6 +117,11 @@ export function ConnectWithSelect({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <ChainSelect
+        activeChainId={desiredChainId}
+        switchChain={switchChain}
+        chainIds={chainIds as number[]}
+      />
       <div style={{ marginBottom: '1rem' }} />
       {isActive ? (
         error ? (
@@ -148,3 +153,7 @@ export function ConnectWithSelect({
     </div>
   );
 }
+
+// TODO: 배포 환경 값에 맞춘 에러처리를 해주어야함
+// TODO: Select 지우고 커넥트 누르면 자동으로 해당 체인 id의 망을 연결할 것
+// 기존 Card를 Connect Wallet 클릭했을 때 의 컴포넌트로 사용하면 되고, 우선 위 사항분리 시킨 후 하면 될듯

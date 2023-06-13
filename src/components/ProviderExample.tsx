@@ -1,4 +1,4 @@
-// import type { CoinbaseWallet } from '@web3-react/coinbase-wallet'
+import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import {
   useWeb3React,
   Web3ReactHooks,
@@ -9,7 +9,10 @@ import type { Network } from '@web3-react/network';
 
 // import type { WalletConnect } from '@web3-react/walletconnect'
 // import type { WalletConnect as WalletConnectV2 } from '@web3-react/walletconnect-v2'
-// import { coinbaseWallet, hooks as coinbaseWalletHooks } from '../connectors/coinbaseWallet'
+import {
+  coinbaseWallet,
+  hooks as coinbaseWalletHooks,
+} from '../connectors/coinbaseWallet';
 import { hooks as metaMaskHooks, metaMask } from '../connectors/metaMask';
 import { hooks as networkHooks, network } from '../connectors/network';
 // import {
@@ -22,7 +25,8 @@ import { getName } from '../utils';
 const connectors: [
   (
     | MetaMask
-    //   | WalletConnect | WalletConnectV2 | CoinbaseWallet
+    //   | WalletConnect | WalletConnectV2
+    | CoinbaseWallet
     | Network
   ),
   Web3ReactHooks
@@ -30,20 +34,18 @@ const connectors: [
   [metaMask, metaMaskHooks],
   //   [walletConnect, walletConnectHooks],
   // [walletConnectV2, walletConnectV2Hooks],
-  //   [coinbaseWallet, coinbaseWalletHooks],
+  [coinbaseWallet, coinbaseWalletHooks],
   [network, networkHooks],
 ];
 
-function Child() {
-  const { connector } = useWeb3React();
-  console.log(`Priority Connector is: ${getName(connector)}`);
-  return null;
-}
+// function Child() {
+//   const { connector } = useWeb3React();
+//   console.log(`Priority Connector is: ${getName(connector)}`);
+//   return null;
+// }
 
-export default function ProviderExample() {
+export default function ProviderExample({ children }: any) {
   return (
-    <Web3ReactProvider connectors={connectors}>
-      <Child />
-    </Web3ReactProvider>
+    <Web3ReactProvider connectors={connectors}>{children}</Web3ReactProvider>
   );
 }

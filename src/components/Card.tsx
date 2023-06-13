@@ -1,4 +1,4 @@
-// import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
+import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { Web3ReactHooks } from '@web3-react/core';
 // import type { GnosisSafe } from '@web3-react/gnosis-safe';
 import type { MetaMask } from '@web3-react/metamask';
@@ -17,7 +17,7 @@ interface Props {
     | MetaMask
     // | WalletConnect
     // | WalletConnectV2
-    // | CoinbaseWallet
+    | CoinbaseWallet
     | Network;
   // | GnosisSafe;
   activeChainId: ReturnType<Web3ReactHooks['useChainId']>;
